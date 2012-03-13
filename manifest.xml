@@ -1,0 +1,20 @@
+<package>
+  <description brief="Entry point for using OpenNI cameras in ROS">
+
+     Launch files to open an OpenNI device and load all nodelets to
+     convert raw depth/RGB/IR streams to depth images, disparity
+     images, and (registered) point clouds.
+
+  </description>
+  <author>Patrick Mihelich</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/openni_launch</url>
+
+  <depend package="depth_image_proc"/>
+  <depend package="image_proc"/>
+  <depend package="nodelet"/>
+  <depend package="openni_camera"/>
+  <depend package="tf"/>
+
+</package>

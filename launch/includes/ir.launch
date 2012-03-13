@@ -1,0 +1,13 @@
+<!-- Load processing nodelets for the IR camera -->
+<launch>
+
+  <arg name="manager" />
+  <arg name="bond" default="--no-bond" />
+
+  <!-- Rectified image -->
+  <node pkg="nodelet" type="nodelet" name="rectify_ir"
+        args="load image_proc/rectify $(arg manager) $(arg bond)">
+    <remap from="image_mono"  to="image_raw" />
+  </node>
+
+</launch>
