@@ -9,7 +9,10 @@
   <arg name="depth_frame_id" />
   <arg name="rgb_camera_info_url" />
   <arg name="depth_camera_info_url" />
-  <arg name="bond" default="--no-bond" />
+
+  <arg name="respawn" default="false" />
+  <arg     if="$(arg respawn)" name="bond" value="" />
+  <arg unless="$(arg respawn)" name="bond" value="--no-bond" />
   
   <!-- Remapping arguments -->
   <arg name="rgb"              default="rgb" />
@@ -21,7 +24,8 @@
 
   <!-- Driver nodelet -->
   <node pkg="nodelet" type="nodelet" name="driver" 
-        args="load openni_camera/driver $(arg manager) $(arg bond)">
+        args="load openni_camera/driver $(arg manager) $(arg bond)"
+	respawn="$(arg respawn)">
     <param name="device_id" value="$(arg device_id)" />
     <param name="rgb_camera_info_url"   value="$(arg rgb_camera_info_url)" />
     <param name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
@@ -31,28 +35,28 @@
     <remap from="rgb" to="$(arg rgb)" />
     <remap from="depth" to="$(arg depth)" />
     <remap from="depth_registered" to="$(arg depth_registered)" />
+    <remap from="projector" to="$(arg projector)" />
   </node>
 
-
   <!-- RGB processing -->
-  <include file="$(find openni_launch)/launch/includes/rgb.launch"
+  <include file="$(find image_proc)/launch/image_proc.launch"
 	   ns="$(arg rgb)">
     <arg name="manager" value="$(arg manager)" />
-    <arg name="bond" value="$(arg bond)" />
+    <arg name="respawn" value="$(arg respawn)" />
   </include>
 
   <!-- IR processing -->
   <include file="$(find openni_launch)/launch/includes/ir.launch"
 	   ns="$(arg ir)">
     <arg name="manager" value="$(arg manager)" />
-    <arg name="bond" value="$(arg bond)" />
+    <arg name="respawn" value="$(arg respawn)" />
   </include>
 
   <!-- Unregistered depth processing -->
   <include file="$(find openni_launch)/launch/includes/depth.launch"
 	   ns="$(arg depth)">
     <arg name="manager" value="$(arg manager)" />
-    <arg name="bond" value="$(arg bond)" />
+    <arg name="respawn" value="$(arg respawn)" />
   </include>
 
   <!-- Depth-to-RGB registration and processing -->
@@ -61,7 +65,7 @@
     <arg name="rgb" value="$(arg rgb)" />
     <arg name="depth" value="$(arg depth)" />
     <arg name="depth_registered" value="$(arg depth_registered)" />
-    <arg name="bond" value="$(arg bond)" />
+    <arg name="respawn" value="$(arg respawn)" />
   </include>
 
   <!-- Unregistered disparity image -->
@@ -69,7 +73,7 @@
     <arg name="manager" value="$(arg manager)" />
     <arg name="depth" value="$(arg depth)" />
     <arg name="projector" value="$(arg projector)" />
-    <arg name="bond" value="$(arg bond)" />    
+    <arg name="respawn" value="$(arg respawn)" />    
   </include>
 
   <!-- Registered disparity image -->
@@ -77,7 +81,7 @@
     <arg name="manager" value="$(arg manager)" />
     <arg name="depth" value="$(arg depth_registered)" />
     <arg name="projector" value="$(arg projector)" />
-    <arg name="bond" value="$(arg bond)" />    
+    <arg name="respawn" value="$(arg respawn)" />    
   </include>
 
 </launch>

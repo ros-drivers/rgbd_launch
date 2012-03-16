@@ -2,11 +2,14 @@
 <launch>
 
   <arg name="manager" />
-  <arg name="bond" default="--no-bond" />
+  <arg name="respawn" default="false" />
+  <arg     if="$(arg respawn)" name="bond" value="" />
+  <arg unless="$(arg respawn)" name="bond" value="--no-bond" />
 
   <!-- Rectified image -->
   <node pkg="nodelet" type="nodelet" name="rectify_ir"
-        args="load image_proc/rectify $(arg manager) $(arg bond)">
+        args="load image_proc/rectify $(arg manager) $(arg bond)"
+	respawn="$(arg respawn)">
     <remap from="image_mono"  to="image_raw" />
   </node>
 

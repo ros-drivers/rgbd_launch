@@ -27,9 +27,8 @@
   <arg name="projector"        default="projector" />
 
   <!-- Disable bond topics by default -->
-  <arg name="bond" default="false" />
-  <arg if="$(arg bond)" name="bond_arg" value="" />
-  <arg unless="$(arg bond)" name="bond_arg" value="--no-bond" />
+  <arg name="bond" default="false" /> <!-- DEPRECATED, use respawn arg instead -->
+  <arg name="respawn" default="$(arg bond)" />
 
   <!-- Optionally launch manager in GDB, for debugging -->
   <arg name="debug" default="false" />
@@ -61,7 +60,7 @@
       <arg name="depth"                 value="$(arg depth)" />
       <arg name="depth_registered"      value="$(arg depth_registered)" />
       <arg name="projector"             value="$(arg projector)" />
-      <arg name="bond"                  value="$(arg bond_arg)" />
+      <arg name="respawn"               value="$(arg respawn)" />
     </include>
 
   </group> <!-- camera -->
