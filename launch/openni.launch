@@ -1,3 +1,4 @@
+<!-- Entry point for using OpenNI devices -->
 <launch>
 
   <!-- "camera" should uniquely identify the device. All topics are pushed down
@@ -7,9 +8,10 @@
   <arg name="depth_frame_id" default="/$(arg camera)_depth_optical_frame" />
 
   <!-- device_id can have the following formats:
+         "B00367707227042B": Use device with given serial number
          "#1"              : Use first device found
          "2@3"             : Use device on USB bus 2, address 3
-         "B00367707227042B": Use device with given serial number
+	 "2@0"             : Use first device found on USB bus 2
     -->
   <arg name="device_id" default="#1" />
 
@@ -19,35 +21,37 @@
   <arg name="rgb_camera_info_url"   default="" />
   <arg name="depth_camera_info_url" default="" />
 
-  <!-- Arguments for remapping "rgb", "depth", "depth_registered" namespaces -->
+  <!-- Arguments for remapping all device namespaces -->
   <arg name="rgb"              default="rgb" />
   <arg name="ir"               default="ir" />
   <arg name="depth"            default="depth" />
   <arg name="depth_registered" default="depth_registered" />
   <arg name="projector"        default="projector" />
 
+  <!-- Optionally suppress loading the driver nodelet and/or publishing the default tf
+       tree. Useful if you are playing back recorded raw data from a bag, or are
+       supplying a more accurate tf tree from calibration. -->
+  <arg name="load_driver" default="true" />
+  <arg name="publish_tf" default="true" />
+
   <!-- Disable bond topics by default -->
   <arg name="bond" default="false" /> <!-- DEPRECATED, use respawn arg instead -->
   <arg name="respawn" default="$(arg bond)" />
 
-  <!-- Optionally launch manager in GDB, for debugging -->
-  <arg name="debug" default="false" />
-  <arg if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args" />
-  <arg unless="$(arg debug)" name="launch_prefix" value="" />
-  <!-- Also globally disable bond heartbeat timeout in debug mode, so everything
-       doesn't die when you hit a break point -->
-  <param if="$(arg debug)" name="/bond_disable_heartbeat_timeout" value="true" />
-
-  <!-- Nodelet manager, lives in top-level namespace -->
+  <!-- Start nodelet manager in top-level namespace -->
   <arg name="manager" value="$(arg camera)_nodelet_manager" />
-  <node pkg="nodelet" type="nodelet" name="$(arg manager)" args="manager"
-        output="screen" launch-prefix="$(arg launch_prefix)" />
+  <arg name="debug" default="false" /> <!-- Run manager in GDB? -->
+  <include file="$(find openni_launch)/launch/includes/manager.launch">
+    <arg name="name" value="$(arg manager)" />
+    <arg name="debug" value="$(arg debug)" />
+  </include>
 
   <!-- Push down all topics/nodelets into "camera" namespace -->
   <group ns="$(arg camera)">
 
-    <!-- Load driver and processing nodelets in standard configuration -->
-    <include file="$(find openni_launch)/launch/includes/device.launch">
+    <!-- Load driver -->
+    <include if="$(arg load_driver)"
+	     file="$(find openni_launch)/launch/includes/device.launch">
       <!-- Could really use some syntactic sugar for this -->
       <arg name="manager"               value="/$(arg manager)" /> <!-- Fully resolved -->
       <arg name="device_id"             value="$(arg device_id)" />
@@ -77,7 +81,8 @@
   </group> <!-- camera -->
 
   <!-- Load reasonable defaults for the relative pose between cameras -->
-  <include file="$(find openni_launch)/launch/kinect_frames.launch">
+  <include if="$(arg publish_tf)"
+	   file="$(find openni_launch)/launch/kinect_frames.launch">
     <arg name="camera" value="$(arg camera)" />
   </include>
 
