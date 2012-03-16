@@ -10,6 +10,7 @@
   <arg name="depth_frame_id" />
   <arg name="rgb_camera_info_url" />
   <arg name="depth_camera_info_url" />
+  <arg name="depth_registration" />
 
   <arg name="respawn" default="false" />
   <arg     if="$(arg respawn)" name="bond" value="" />
@@ -31,6 +32,8 @@
     <param name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
     <param name="rgb_frame_id"   value="$(arg rgb_frame_id)" />
     <param name="depth_frame_id" value="$(arg depth_frame_id)" />
+    <param name="depth_registration" value="$(arg depth_registration)" />
+
     <remap from="ir" to="$(arg ir)" />
     <remap from="rgb" to="$(arg rgb)" />
     <remap from="depth" to="$(arg depth)" />

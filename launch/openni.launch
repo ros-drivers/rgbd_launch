@@ -21,6 +21,9 @@
   <arg name="rgb_camera_info_url"   default="" />
   <arg name="depth_camera_info_url" default="" />
 
+  <!-- Use OpenNI's factory-calibrated depth->RGB registration? -->
+  <arg name="depth_registration" default="false" />
+
   <!-- Arguments for remapping all device namespaces -->
   <arg name="rgb"              default="rgb" />
   <arg name="ir"               default="ir" />
@@ -59,6 +62,7 @@
       <arg name="depth_frame_id"        value="$(arg depth_frame_id)" />
       <arg name="rgb_camera_info_url"   value="$(arg rgb_camera_info_url)" />
       <arg name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
+      <arg name="depth_registration"    value="$(arg depth_registration)" />
       <arg name="rgb"                   value="$(arg rgb)" />
       <arg name="ir"                    value="$(arg ir)" />
       <arg name="depth"                 value="$(arg depth)" />
