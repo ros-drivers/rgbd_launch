@@ -1,3 +1,4 @@
+<!-- Launch the OpenNI device driver -->
 <launch>
 
   <!-- Name of nodelet manager, must be fully resolved -->
@@ -21,7 +22,6 @@
   <arg name="depth_registered" default="depth_registered" />
   <arg name="projector"        default="projector" />
 
-
   <!-- Driver nodelet -->
   <node pkg="nodelet" type="nodelet" name="driver" 
         args="load openni_camera/driver $(arg manager) $(arg bond)"
@@ -37,51 +37,5 @@
     <remap from="depth_registered" to="$(arg depth_registered)" />
     <remap from="projector" to="$(arg projector)" />
   </node>
-
-  <!-- RGB processing -->
-  <include file="$(find image_proc)/launch/image_proc.launch"
-	   ns="$(arg rgb)">
-    <arg name="manager" value="$(arg manager)" />
-    <arg name="respawn" value="$(arg respawn)" />
-  </include>
-
-  <!-- IR processing -->
-  <include file="$(find openni_launch)/launch/includes/ir.launch"
-	   ns="$(arg ir)">
-    <arg name="manager" value="$(arg manager)" />
-    <arg name="respawn" value="$(arg respawn)" />
-  </include>
-
-  <!-- Unregistered depth processing -->
-  <include file="$(find openni_launch)/launch/includes/depth.launch"
-	   ns="$(arg depth)">
-    <arg name="manager" value="$(arg manager)" />
-    <arg name="respawn" value="$(arg respawn)" />
-  </include>
-
-  <!-- Depth-to-RGB registration and processing -->
-  <include file="$(find openni_launch)/launch/includes/depth_registered.launch">
-    <arg name="manager" value="$(arg manager)" />
-    <arg name="rgb" value="$(arg rgb)" />
-    <arg name="depth" value="$(arg depth)" />
-    <arg name="depth_registered" value="$(arg depth_registered)" />
-    <arg name="respawn" value="$(arg respawn)" />
-  </include>
-
-  <!-- Unregistered disparity image -->
-  <include file="$(find openni_launch)/launch/includes/disparity.launch">
-    <arg name="manager" value="$(arg manager)" />
-    <arg name="depth" value="$(arg depth)" />
-    <arg name="projector" value="$(arg projector)" />
-    <arg name="respawn" value="$(arg respawn)" />    
-  </include>
-
-  <!-- Registered disparity image -->
-  <include file="$(find openni_launch)/launch/includes/disparity.launch">
-    <arg name="manager" value="$(arg manager)" />
-    <arg name="depth" value="$(arg depth_registered)" />
-    <arg name="projector" value="$(arg projector)" />
-    <arg name="respawn" value="$(arg respawn)" />    
-  </include>
 
 </launch>

@@ -63,6 +63,17 @@
       <arg name="respawn"               value="$(arg respawn)" />
     </include>
 
+    <!-- Load standard constellation of processing nodelets -->
+    <include file="$(find openni_launch)/launch/includes/processing.launch">
+      <arg name="manager"               value="/$(arg manager)" /> <!-- Fully resolved -->
+      <arg name="rgb"                   value="$(arg rgb)" />
+      <arg name="ir"                    value="$(arg ir)" />
+      <arg name="depth"                 value="$(arg depth)" />
+      <arg name="depth_registered"      value="$(arg depth_registered)" />
+      <arg name="projector"             value="$(arg projector)" />
+      <arg name="respawn"               value="$(arg respawn)" />
+    </include>
+
   </group> <!-- camera -->
 
   <!-- Load reasonable defaults for the relative pose between cameras -->
