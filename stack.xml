@@ -9,7 +9,7 @@
   <author>Patrick Mihelich</author>
   <license>BSD</license>  
   <review status="unreviewed" notes=""/>
-  <version>1.8.0</version>
+  <version>1.8.1</version>
   <url>http://ros.org/wiki/openni_launch</url>
 
   <depend stack="geometry" /> <!-- tf -->
