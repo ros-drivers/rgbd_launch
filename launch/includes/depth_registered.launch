@@ -28,14 +28,6 @@
     <remap from="depth_registered/image_rect" to="$(arg depth_registered)/image_rect_raw" />
   </node>
 
-  <!-- Get all the usual depth topics -->
-  <include file="$(find openni_launch)/launch/includes/depth.launch"
-	   ns="$(arg depth_registered)">
-    <arg name="manager"    value="$(arg manager)" />
-    <arg name="points_xyz" value="false" /> <!-- Suppress XYZ point cloud -->
-    <arg name="respawn" value="$(arg respawn)" />
-  </include>
-
   <!-- Instead publish registered XYZRGB point cloud -->
   <node pkg="nodelet" type="nodelet" name="points_xyzrgb_$(arg suffix)"
         args="load depth_image_proc/point_cloud_xyzrgb $(arg manager) $(arg bond)"
