@@ -1,13 +1,21 @@
 <!-- Load full set of processing nodelets for an OpenNI device -->
 <launch>
 
-  <!-- Name of nodelet manager, must be fully resolved -->
+  <!-- Name of nodelet manager -->
   <arg name="manager" />
 
   <!-- Launch robustly (bonds + respawn) or not? -->
   <arg name="respawn" default="false" />
   <arg     if="$(arg respawn)" name="bond" value="" />
   <arg unless="$(arg respawn)" name="bond" value="--no-bond" />
+  
+  <!-- Processing modules -->
+  <arg name="rgb_processing" />
+  <arg name="ir_processing" />
+  <arg name="depth_processing" />
+  <arg name="depth_registered_processing" />
+  <arg name="disparity_processing" />
+  <arg name="disparity_registered_processing" />
   
   <!-- Remapping arguments -->
   <arg name="rgb"              default="rgb" />
@@ -17,28 +25,32 @@
   <arg name="projector"        default="projector" />
 
   <!-- RGB processing -->
-  <include file="$(find openni_launch)/launch/includes/rgb.launch">
+  <include if="$(arg rgb_processing)"
+           file="$(find openni_launch)/launch/includes/rgb.launch">
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="rgb"     value="$(arg rgb)" />
   </include>
 
   <!-- IR processing -->
-  <include file="$(find openni_launch)/launch/includes/ir.launch">
+  <include if="$(arg ir_processing)"
+           file="$(find openni_launch)/launch/includes/ir.launch">
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="ir"      value="$(arg ir)" />
   </include>
 
   <!-- Unregistered depth processing -->
-  <include file="$(find openni_launch)/launch/includes/depth.launch">
+  <include if="$(arg depth_processing)"
+           file="$(find openni_launch)/launch/includes/depth.launch">
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="depth"   value="$(arg depth)" />
   </include>
 
   <!-- Depth-to-RGB registration and processing -->
-  <include file="$(find openni_launch)/launch/includes/depth_registered.launch">
+  <include if="$(arg depth_registered_processing)"
+           file="$(find openni_launch)/launch/includes/depth_registered.launch">
     <arg name="manager"           value="$(arg manager)" />
     <arg name="rgb"               value="$(arg rgb)" />
     <arg name="depth"             value="$(arg depth)" />
@@ -47,7 +59,8 @@
   </include>
 
   <!-- Unregistered disparity image -->
-  <include file="$(find openni_launch)/launch/includes/disparity.launch">
+  <include if="$(arg disparity_processing)"
+           file="$(find openni_launch)/launch/includes/disparity.launch">
     <arg name="manager"   value="$(arg manager)" />
     <arg name="depth"     value="$(arg depth)" />
     <arg name="projector" value="$(arg projector)" />
@@ -55,7 +68,8 @@
   </include>
 
   <!-- Registered disparity image -->
-  <include file="$(find openni_launch)/launch/includes/disparity.launch">
+  <include if="$(arg disparity_registered_processing)"
+           file="$(find openni_launch)/launch/includes/disparity.launch">
     <arg name="manager"   value="$(arg manager)" />
     <arg name="depth"     value="$(arg depth_registered)" />
     <arg name="projector" value="$(arg projector)" />

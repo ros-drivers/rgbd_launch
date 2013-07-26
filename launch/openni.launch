@@ -36,6 +36,13 @@
        supplying a more accurate tf tree from calibration. -->
   <arg name="load_driver" default="true" />
   <arg name="publish_tf" default="true" />
+  <!-- Processing Modules -->
+  <arg name="rgb_processing"                  default="true"/>
+  <arg name="ir_processing"                   default="true"/>
+  <arg name="depth_processing"                default="true"/>
+  <arg name="depth_registered_processing"     default="true"/>
+  <arg name="disparity_processing"            default="true"/>
+  <arg name="disparity_registered_processing" default="true"/>
 
   <!-- Disable bond topics by default -->
   <arg name="bond" default="false" /> <!-- DEPRECATED, use respawn arg instead -->
@@ -77,13 +84,19 @@
     
     <!-- Load standard constellation of processing nodelets -->
     <include file="$(find openni_launch)/launch/includes/processing.launch">
-      <arg name="manager"               value="$(arg manager)" />
-      <arg name="rgb"                   value="$(arg rgb)" />
-      <arg name="ir"                    value="$(arg ir)" />
-      <arg name="depth"                 value="$(arg depth)" />
-      <arg name="depth_registered"      value="$(arg depth_registered)" />
-      <arg name="projector"             value="$(arg projector)" />
-      <arg name="respawn"               value="$(arg respawn)" />
+      <arg name="manager"                         value="$(arg manager)" />
+      <arg name="rgb"                             value="$(arg rgb)" />
+      <arg name="ir"                              value="$(arg ir)" />
+      <arg name="depth"                           value="$(arg depth)" />
+      <arg name="depth_registered"                value="$(arg depth_registered)" />
+      <arg name="projector"                       value="$(arg projector)" />
+      <arg name="respawn"                         value="$(arg respawn)" />
+      <arg name="rgb_processing"                  value="$(arg rgb_processing)" />
+      <arg name="ir_processing"                   value="$(arg ir_processing)" />
+      <arg name="depth_processing"                value="$(arg depth_processing)" />
+      <arg name="depth_registered_processing"     value="$(arg depth_registered_processing)" />
+      <arg name="disparity_processing"            value="$(arg disparity_processing)" />
+      <arg name="disparity_registered_processing" value="$(arg disparity_registered_processing)" />
     </include>
   
   </group> <!-- camera -->
