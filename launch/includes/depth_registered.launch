@@ -20,7 +20,7 @@
   <!-- Registration nodelet, projecting depth to RGB camera -->
   <node pkg="nodelet" type="nodelet" name="register_$(arg suffix)"
         args="load depth_image_proc/register $(arg manager) $(arg bond)"
-	respawn="$(arg respawn)">
+        respawn="$(arg respawn)">
     <!-- Explicit topic remappings, shouldn't need all of these -->
     <remap from="rgb/camera_info"             to="$(arg rgb)/camera_info" />
     <remap from="depth/camera_info"           to="$(arg depth)/camera_info" />
@@ -28,18 +28,10 @@
     <remap from="depth_registered/image_rect" to="$(arg depth_registered)/image_rect_raw" />
   </node>
 
-  <!-- Get all the usual depth topics -->
-  <include file="$(find openni_launch)/launch/includes/depth.launch"
-	   ns="$(arg depth_registered)">
-    <arg name="manager"    value="$(arg manager)" />
-    <arg name="points_xyz" value="false" /> <!-- Suppress XYZ point cloud -->
-    <arg name="respawn" value="$(arg respawn)" />
-  </include>
-
   <!-- Instead publish registered XYZRGB point cloud -->
   <node pkg="nodelet" type="nodelet" name="points_xyzrgb_$(arg suffix)"
         args="load depth_image_proc/point_cloud_xyzrgb $(arg manager) $(arg bond)"
-	respawn="$(arg respawn)">
+        respawn="$(arg respawn)">
     <!-- Explicit topic remappings, shouldn't need all of these -->
     <remap from="rgb/image_rect_color"        to="$(arg rgb)/image_rect_color" />
     <remap from="rgb/camera_info"             to="$(arg rgb)/camera_info" />
