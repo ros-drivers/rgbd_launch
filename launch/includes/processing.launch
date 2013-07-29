@@ -1,4 +1,4 @@
-<!-- Load full set of processing nodelets for an OpenNI device -->
+<!-- Load full set of processing nodelets for a RGBD device -->
 <launch>
 
   <!-- Name of nodelet manager -->
@@ -26,7 +26,7 @@
 
   <!-- RGB processing -->
   <include if="$(arg rgb_processing)"
-           file="$(find openni_launch)/launch/includes/rgb.launch">
+           file="$(find rgbd_launch)/launch/includes/rgb.launch">
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="rgb"     value="$(arg rgb)" />
@@ -34,7 +34,7 @@
 
   <!-- IR processing -->
   <include if="$(arg ir_processing)"
-           file="$(find openni_launch)/launch/includes/ir.launch">
+           file="$(find rgbd_launch)/launch/includes/ir.launch">
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="ir"      value="$(arg ir)" />
@@ -42,7 +42,7 @@
 
   <!-- Unregistered depth processing -->
   <include if="$(arg depth_processing)"
-           file="$(find openni_launch)/launch/includes/depth.launch">
+           file="$(find rgbd_launch)/launch/includes/depth.launch">
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="depth"   value="$(arg depth)" />
@@ -50,7 +50,7 @@
 
   <!-- Depth-to-RGB registration and processing -->
   <include if="$(arg depth_registered_processing)"
-           file="$(find openni_launch)/launch/includes/depth_registered.launch">
+           file="$(find rgbd_launch)/launch/includes/depth_registered.launch">
     <arg name="manager"           value="$(arg manager)" />
     <arg name="rgb"               value="$(arg rgb)" />
     <arg name="depth"             value="$(arg depth)" />
@@ -60,7 +60,7 @@
 
   <!-- Unregistered disparity image -->
   <include if="$(arg disparity_processing)"
-           file="$(find openni_launch)/launch/includes/disparity.launch">
+           file="$(find rgbd_launch)/launch/includes/disparity.launch">
     <arg name="manager"   value="$(arg manager)" />
     <arg name="depth"     value="$(arg depth)" />
     <arg name="projector" value="$(arg projector)" />
@@ -69,7 +69,7 @@
 
   <!-- Registered disparity image -->
   <include if="$(arg disparity_registered_processing)"
-           file="$(find openni_launch)/launch/includes/disparity.launch">
+           file="$(find rgbd_launch)/launch/includes/disparity.launch">
     <arg name="manager"   value="$(arg manager)" />
     <arg name="depth"     value="$(arg depth_registered)" />
     <arg name="projector" value="$(arg projector)" />
