@@ -17,6 +17,9 @@
   <arg name="disparity_processing" />
   <arg name="disparity_registered_processing" />
   
+  <!-- Is device enabled registration enabled? -->
+  <arg name="depth_registration" default="false" />
+  
   <!-- Remapping arguments -->
   <arg name="rgb"              default="rgb" />
   <arg name="ir"               default="ir" />
@@ -51,11 +54,12 @@
   <!-- Depth-to-RGB registration and processing -->
   <include if="$(arg depth_registered_processing)"
            file="$(find rgbd_launch)/launch/includes/depth_registered.launch">
-    <arg name="manager"           value="$(arg manager)" />
-    <arg name="rgb"               value="$(arg rgb)" />
-    <arg name="depth"             value="$(arg depth)" />
-    <arg name="depth_registered"  value="$(arg depth_registered)" />
-    <arg name="respawn"           value="$(arg respawn)" />
+    <arg name="manager"            value="$(arg manager)" />
+    <arg name="depth_registration" value="$(arg depth_registration)" />
+    <arg name="rgb"                value="$(arg rgb)" />
+    <arg name="depth"              value="$(arg depth)" />
+    <arg name="depth_registered"   value="$(arg depth_registered)" />
+    <arg name="respawn"            value="$(arg respawn)" />
   </include>
 
   <!-- Unregistered disparity image -->

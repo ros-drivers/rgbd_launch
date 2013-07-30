@@ -13,12 +13,14 @@
   <arg name="rgb"              default="rgb" />
   <arg name="depth"            default="depth" />
   <arg name="depth_registered" default="depth_registered" />
+  <arg name="depth_registration" default="false" />
   <!-- For distinguishing multiple register/XYZRGB nodelets. Default fails if rgb
        or depth contains a namespace. -->
   <arg name="suffix" default="$(arg depth)_$(arg rgb)" />
 
   <!-- Registration nodelet, projecting depth to RGB camera -->
-  <node pkg="nodelet" type="nodelet" name="register_$(arg suffix)"
+  <node unless="$(arg depth_registration)" 
+        pkg="nodelet" type="nodelet" name="register_$(arg suffix)"
         args="load depth_image_proc/register $(arg manager) $(arg bond)"
         respawn="$(arg respawn)">
     <!-- Explicit topic remappings, shouldn't need all of these -->
@@ -26,6 +28,18 @@
     <remap from="depth/camera_info"           to="$(arg depth)/camera_info" />
     <remap from="depth/image_rect"            to="$(arg depth)/image_rect_raw" />
     <remap from="depth_registered/image_rect" to="$(arg depth_registered)/image_rect_raw" />
+  </node>
+
+  <!-- for device enabled registration, simply rectify the raw image -->
+  <node if="$(arg depth_registration)" 
+        pkg="nodelet" type="nodelet" name="$(arg depth_registered)_rectify_depth"
+        args="load image_proc/rectify $(arg manager) $(arg bond)"
+        respawn="$(arg respawn)">
+    <remap from="image_mono"  to="$(arg depth_registered)/image_raw" />
+    <remap from="image_rect"  to="$(arg depth_registered)/image_rect_raw" />
+    <!-- Use nearest neighbor (0) interpolation so we don't streak across
+         depth boundaries -->
+    <param name="interpolation" value="0" />
   </node>
 
   <!-- Instead publish registered XYZRGB point cloud -->
