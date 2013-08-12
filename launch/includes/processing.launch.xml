@@ -29,7 +29,7 @@
 
   <!-- RGB processing -->
   <include if="$(arg rgb_processing)"
-           file="$(find rgbd_launch)/launch/includes/rgb.launch">
+           file="$(find rgbd_launch)/launch/includes/rgb.launch.xml">
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="rgb"     value="$(arg rgb)" />
@@ -37,7 +37,7 @@
 
   <!-- IR processing -->
   <include if="$(arg ir_processing)"
-           file="$(find rgbd_launch)/launch/includes/ir.launch">
+           file="$(find rgbd_launch)/launch/includes/ir.launch.xml">
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="ir"      value="$(arg ir)" />
@@ -46,7 +46,7 @@
   <!-- Unregistered depth processing -->
   <group unless="$(arg depth_registration)">
     <include if="$(arg depth_processing)"
-      file="$(find rgbd_launch)/launch/includes/depth.launch">
+      file="$(find rgbd_launch)/launch/includes/depth.launch.xml">
       <arg name="manager" value="$(arg manager)" />
       <arg name="respawn" value="$(arg respawn)" />
       <arg name="depth"   value="$(arg depth)" />
@@ -55,7 +55,7 @@
 
   <!-- Depth-to-RGB registration and processing -->
   <include if="$(arg depth_registered_processing)"
-           file="$(find rgbd_launch)/launch/includes/depth_registered.launch">
+           file="$(find rgbd_launch)/launch/includes/depth_registered.launch.xml">
     <arg name="manager"            value="$(arg manager)" />
     <arg name="depth_registration" value="$(arg depth_registration)" />
     <arg name="rgb"                value="$(arg rgb)" />
@@ -67,7 +67,7 @@
   <!-- Unregistered disparity image -->
   <group unless="$(arg depth_registration)">
     <include if="$(arg disparity_processing)"
-      file="$(find rgbd_launch)/launch/includes/disparity.launch">
+      file="$(find rgbd_launch)/launch/includes/disparity.launch.xml">
       <arg name="manager"   value="$(arg manager)" />
       <arg name="depth"     value="$(arg depth)" />
       <arg name="projector" value="$(arg projector)" />
@@ -77,7 +77,7 @@
 
   <!-- Registered disparity image -->
   <include if="$(arg disparity_registered_processing)"
-           file="$(find rgbd_launch)/launch/includes/disparity.launch">
+           file="$(find rgbd_launch)/launch/includes/disparity.launch.xml">
     <arg name="manager"   value="$(arg manager)" />
     <arg name="depth"     value="$(arg depth_registered)" />
     <arg name="projector" value="$(arg projector)" />
