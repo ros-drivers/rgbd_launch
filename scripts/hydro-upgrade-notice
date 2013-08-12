@@ -13,6 +13,7 @@ if __name__ == '__main__':
 
     rospy.logfatal(name + ' has moved to ' + to_pkg + '! ' +
             'Replace \"$(find ' + from_pkg + ')/' + from_pkg_path + '\" ' +
-            'with \"$(find ' + to_pkg + ')/' + to_pkg_path + '\".') 
+            'with \"$(find ' + to_pkg + ')/' + to_pkg_path + '\". ' +
+            'This notice will be removed in ROS Indigo') 
 
     sys.exit(0)
