@@ -6,6 +6,9 @@ find_package(catkin)
 catkin_package()
 
 install(DIRECTORY launch
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/
 )
 
+install(PROGRAMS scripts/hydro-upgrade-notice
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}/
+)
