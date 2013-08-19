@@ -6,9 +6,8 @@
      convert raw depth/RGB/IR streams to depth images, disparity images, 
      and (registered) point clouds.
     </description>
-  <author>Patrick Mihelich</author>
+  <author>Patrick Mihelich and others</author>
   <maintainer email="piyushk@gmail.com">Piyush Khandelwal</maintainer>
-  <maintainer email="jbinney@willowgarage.com">Jon Binney</maintainer>
   <license>BSD</license>
 
   <url type="website">http://www.ros.org/wiki/rgbd_launch</url>
