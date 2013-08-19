@@ -45,9 +45,8 @@
   </group>
 
   <!-- for device enabled registration, simply rectify the raw image -->
-  <group if="$(arg sw_registered_processing)">
-    <node if="$(arg hw_registered_processing)"
-          pkg="nodelet" type="nodelet" name="$(arg depth_registered)_rectify_depth"
+  <group if="$(arg hw_registered_processing)">
+    <node pkg="nodelet" type="nodelet" name="$(arg depth_registered)_rectify_depth"
           args="load image_proc/rectify $(arg manager) $(arg bond)"
           respawn="$(arg respawn)">
       <remap from="image_mono"  to="$(arg depth_registered)/image_raw" />
