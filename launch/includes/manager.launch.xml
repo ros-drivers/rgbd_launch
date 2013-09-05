@@ -4,6 +4,10 @@
   <!-- Name here should NOT be globally qualified (node names cannot contain /) -->
   <arg name="name" />
 
+  <!-- Machine where should the manager run -->
+  <machine name="localhost" address="localhost" env-loader="/opt/ros/hydro/env.sh"/>
+  <arg name="machine" default="localhost" />
+
   <!-- Optionally launch manager in GDB, for debugging -->
   <arg name="debug" default="false" />
   <arg if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args" />
@@ -17,7 +21,7 @@
 
   <!-- Nodelet manager -->
   <node pkg="nodelet" type="nodelet" name="$(arg name)" args="manager"
-        output="screen" launch-prefix="$(arg launch_prefix)">
+        output="screen" launch-prefix="$(arg launch_prefix)" machine="$(arg machine)">
      <param name="num_worker_threads" value="$(arg num_worker_threads)" />
   </node>
 
