@@ -11,6 +11,7 @@
   
   <!-- Processing modules -->
   <arg name="rgb_processing" default="true" />
+  <arg name="debayer_processing" default="true" />
   <arg name="ir_processing" default="true" />
   <arg name="depth_processing" default="true" />
   <arg name="depth_registered_processing" default="true" />
@@ -32,6 +33,7 @@
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="rgb"     value="$(arg rgb)" />
+    <arg name="debayer_processing" value="$(arg debayer_processing)" />
   </include>
 
   <!-- IR processing -->

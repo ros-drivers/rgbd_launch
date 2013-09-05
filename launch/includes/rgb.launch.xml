@@ -4,13 +4,16 @@
   <arg name="manager" />
   <arg name="respawn" default="false" />
   <arg name="rgb" />
-  <!-- TODO Arguments for debayer, interpolation methods? -->
+
+  <arg name="debayer_processing" default="true" />
+
+  <!-- TODO Arguments interpolation methods? -->
 
   <arg     if="$(arg respawn)" name="bond" value="" />
   <arg unless="$(arg respawn)" name="bond" value="--no-bond" />
 
   <!-- Debayered images -->
-  <node pkg="nodelet" type="nodelet" name="debayer"
+  <node if="$(arg debayer_processing)" pkg="nodelet" type="nodelet" name="debayer"
         args="load image_proc/debayer $(arg manager) $(arg bond)"
         respawn="$(arg respawn)">
     <remap from="image_raw"   to="$(arg rgb)/image_raw" />
@@ -19,7 +22,7 @@
   </node>
 
   <!-- Monochrome rectified image -->
-  <node pkg="nodelet" type="nodelet" name="rectify_mono"
+  <node if="$(arg debayer_processing)" pkg="nodelet" type="nodelet" name="rectify_mono"
         args="load image_proc/rectify $(arg manager) $(arg bond)"
         respawn="$(arg respawn)">
     <remap from="image_mono" to="$(arg rgb)/image_mono" />
@@ -30,7 +33,8 @@
   <node pkg="nodelet" type="nodelet" name="rectify_color"
         args="load image_proc/rectify $(arg manager) $(arg bond)"
         respawn="$(arg respawn)">
-    <remap from="image_mono" to="$(arg rgb)/image_color" />
+    <remap if="$(arg debayer_processing)" from="image_mono" to="$(arg rgb)/image_color" />
+    <remap unless="$(arg debayer_processing)" from="image_mono" to="$(arg rgb)/image_raw" />
     <remap from="image_rect" to="$(arg rgb)/image_rect_color" />
   </node>
 
