@@ -2,8 +2,8 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.0 (2014-05-05)
+------------------
 * Revert "Add machine parameter". closes `#5 <https://github.com/ros-drivers/rgbd_launch/issues/5>`_
 * Contributors: Piyush Khandelwal
 
