@@ -21,11 +21,12 @@
   <arg name="hw_registered_processing" default="true" />
   
   <!-- Remapping arguments -->
-  <arg name="rgb"              default="rgb" />
-  <arg name="ir"               default="ir" />
-  <arg name="depth"            default="depth" />
-  <arg name="depth_registered" default="depth_registered" />
-  <arg name="projector"        default="projector" />
+  <arg name="rgb"                       default="rgb" />
+  <arg name="ir"                        default="ir" />
+  <arg name="depth"                     default="depth" />
+  <arg name="depth_registered"          default="depth_registered" />
+  <arg name="depth_registered_filtered" default="depth_registered" />
+  <arg name="projector"                 default="projector" />
 
   <!-- RGB processing -->
   <include if="$(arg rgb_processing)"
@@ -55,13 +56,14 @@
   <!-- Depth-to-RGB registration and processing -->
   <include if="$(arg depth_registered_processing)"
            file="$(find rgbd_launch)/launch/includes/depth_registered.launch.xml">
-    <arg name="manager"                  value="$(arg manager)" />
-    <arg name="rgb"                      value="$(arg rgb)" />
-    <arg name="depth"                    value="$(arg depth)" />
-    <arg name="depth_registered"         value="$(arg depth_registered)" />
-    <arg name="respawn"                  value="$(arg respawn)" />
-    <arg name="sw_registered_processing" value="$(arg sw_registered_processing)" />
-    <arg name="hw_registered_processing" value="$(arg hw_registered_processing)" />
+    <arg name="manager"                   value="$(arg manager)" />
+    <arg name="rgb"                       value="$(arg rgb)" />
+    <arg name="depth"                     value="$(arg depth)" />
+    <arg name="depth_registered"          value="$(arg depth_registered)" />
+    <arg name="depth_registered_filtered" value="$(arg depth_registered_filtered)" />
+    <arg name="respawn"                   value="$(arg respawn)" />
+    <arg name="sw_registered_processing"  value="$(arg sw_registered_processing)" />
+    <arg name="hw_registered_processing"  value="$(arg hw_registered_processing)" />
   </include>
 
   <!-- Unregistered disparity image -->
@@ -76,12 +78,12 @@
   <!-- Registered disparity image -->
   <include if="$(arg disparity_registered_processing)"
            file="$(find rgbd_launch)/launch/includes/disparity_registered.launch.xml">
-    <arg name="manager"                  value="$(arg manager)" />
-    <arg name="depth_registered"         value="$(arg depth_registered)" />
-    <arg name="projector"                value="$(arg projector)" />
-    <arg name="respawn"                  value="$(arg respawn)" />
-    <arg name="sw_registered_processing" value="$(arg sw_registered_processing)" />
-    <arg name="hw_registered_processing" value="$(arg hw_registered_processing)" />
+    <arg name="manager"                   value="$(arg manager)" />
+    <arg name="depth_registered"          value="$(arg depth_registered)" />
+    <arg name="projector"                 value="$(arg projector)" />
+    <arg name="respawn"                   value="$(arg respawn)" />
+    <arg name="sw_registered_processing"  value="$(arg sw_registered_processing)" />
+    <arg name="hw_registered_processing"  value="$(arg hw_registered_processing)" />
   </include>
 
 </launch>
