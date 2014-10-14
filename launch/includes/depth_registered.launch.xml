@@ -42,6 +42,15 @@
       <remap from="depth_registered/image_rect" to="$(arg depth_registered)/sw_registered/image_rect_raw" />
       <remap from="depth_registered/points"     to="$(arg depth_registered)/points" />
     </node>
+
+    <!-- Rectified depth image -->
+    <node pkg="nodelet" type="nodelet" name="$(arg depth_registered)_sw_metric_rect"
+      args="load depth_image_proc/convert_metric $(arg manager) $(arg bond)"
+      respawn="$(arg respawn)">
+      <remap from="image_raw" to="$(arg depth_registered)/sw_registered/image_rect_raw" />
+      <remap from="image"     to="$(arg depth_registered)/sw_registered/image_rect" />
+    </node>
+
   </group>
 
   <!-- for device enabled registration, simply rectify the raw image -->
@@ -66,6 +75,23 @@
       <remap from="depth_registered/image_rect" to="$(arg depth_registered)/hw_registered/image_rect_raw" />
       <remap from="depth_registered/points"     to="$(arg depth_registered)/points" />
     </node>
+
+    <!-- Rectified depth image -->
+    <node pkg="nodelet" type="nodelet" name="$(arg depth_registered)_hw_metric_rect"
+      args="load depth_image_proc/convert_metric $(arg manager) $(arg bond)"
+      respawn="$(arg respawn)">
+      <remap from="image_raw" to="$(arg depth_registered)/hw_registered/image_rect_raw" />
+      <remap from="image"     to="$(arg depth_registered)/hw_registered/image_rect" />
+    </node>
+
+    <!-- Unrectified depth image -->
+    <node pkg="nodelet" type="nodelet" name="$(arg depth_registered)_metric"
+          args="load depth_image_proc/convert_metric $(arg manager) $(arg bond)"
+          respawn="$(arg respawn)">
+      <remap from="image_raw" to="$(arg depth_registered)/image_raw" />
+      <remap from="image"     to="$(arg depth_registered)/image" />
+    </node>
+
   </group>
   
 </launch>
