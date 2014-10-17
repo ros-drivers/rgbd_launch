@@ -71,5 +71,5 @@
       <remap from="depth_registered/points"     to="$(arg depth_registered)/points" />
     </node>
   </group>
-  
+
 </launch>

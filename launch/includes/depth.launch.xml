@@ -35,7 +35,7 @@
     <remap from="image_raw" to="$(arg depth)/image_raw" />
     <remap from="image"     to="$(arg depth)/image" />
   </node>
-  
+
   <!-- XYZ point cloud (optional, disable if publishing XYZRGB instead) -->
   <node if="$(arg points_xyz)"
         pkg="nodelet" type="nodelet" name="$(arg depth)_points"
