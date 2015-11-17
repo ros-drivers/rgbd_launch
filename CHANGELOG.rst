@@ -2,8 +2,8 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.1 (2015-11-16)
+------------------
 * 1st ROS Jade release
 * [feat] Add convert_metric nodes to depth_registered.launch.xml (`#13 <https://github.com/ros-drivers/rgbd_launch/issues/13>`_ from kbogert/hydro-devel)
 * [feat] Add the metric nodes to output a depth image
