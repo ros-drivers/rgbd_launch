@@ -2,6 +2,15 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* 1st ROS Jade release
+* [feat] Add convert_metric nodes to depth_registered.launch.xml (`#13 <https://github.com/ros-drivers/rgbd_launch/issues/13>`_ from kbogert/hydro-devel)
+* [feat] Add the metric nodes to output a depth image
+* [fix] Merge pull request `#1 <https://github.com/ros-drivers/rgbd_launch/issues/1>`_ from piyushk/piyush/kbogert-depth-registered-metric
+  fixed rect convert metric to conform to both s/w and h/w pipelines. fixe...
+* Contributors: Kenneth Bogert, Piyush Khandelwal
+
 2.1.0 (2014-05-05)
 ------------------
 * Revert "Add machine parameter". closes `#5 <https://github.com/ros-drivers/rgbd_launch/issues/5>`_
