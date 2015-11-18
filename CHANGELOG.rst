@@ -2,8 +2,8 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.2.0 (2015-11-17)
+------------------
 * 1st release into ROS Jade
 * [feat] Adjust to tf2 (`#18 <https://github.com/ros-drivers/rgbd_launch/issues/18>`_)
 * [sys] travis enabled
