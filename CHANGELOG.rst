@@ -2,6 +2,12 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [feat] Depth registered filtered `#26 <https://github.com/ros-drivers/rgbd_launch/issues/26>`_
+* [sys] Update config to using industrial_ci with Prerelease Test. `#24 <https://github.com/ros-drivers/rgbd_launch/issues/24>`_
+* Contributors: Jonathan Bohren, Isaac I.Y. Saito
+
 2.2.0 (2015-11-17)
 ------------------
 * 1st release into ROS Jade
