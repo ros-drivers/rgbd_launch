@@ -2,8 +2,8 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.2 (2016-05-07)
+------------------
 * [feat] depth_registered_filtered injection `#25 <https://github.com/ros-drivers/rgbd_launch/issues/25>`_
 * [sys] [Travis CI] Update config to using industrial_ci with Prerelease Test. `#23 <https://github.com/ros-drivers/rgbd_launch/issues/23>`_
 * Contributors: Jonathan Bohren, Isaac I.Y. Saito
