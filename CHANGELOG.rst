@@ -2,8 +2,8 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.2.1 (2016-05-07)
+------------------
 * [feat] Depth registered filtered `#26 <https://github.com/ros-drivers/rgbd_launch/issues/26>`_
 * [sys] Update config to using industrial_ci with Prerelease Test. `#24 <https://github.com/ros-drivers/rgbd_launch/issues/24>`_
 * Contributors: Jonathan Bohren, Isaac I.Y. Saito
