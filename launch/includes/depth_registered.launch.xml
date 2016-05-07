@@ -19,6 +19,10 @@
   <!-- For distinguishing multiple register/XYZRGB nodelets. Default fails if rgb
        or depth contains a namespace. -->
   <arg name="suffix" default="$(arg depth)_$(arg rgb)" />
+  <!-- For filtering depth images, set depth_registered_filtered to the
+       filtered depth image topic -->
+  <arg name="depth_registered_filtered" default="depth_registered" />
+
 
   <!-- Registration nodelet, projecting depth to RGB camera -->
   <group if="$(arg sw_registered_processing)">
@@ -39,7 +43,7 @@
       <!-- Explicit topic remappings, shouldn't need all of these -->
       <remap from="rgb/image_rect_color"        to="$(arg rgb)/image_rect_color" />
       <remap from="rgb/camera_info"             to="$(arg rgb)/camera_info" />
-      <remap from="depth_registered/image_rect" to="$(arg depth_registered)/sw_registered/image_rect_raw" />
+      <remap from="depth_registered/image_rect" to="$(arg depth_registered_filtered)/sw_registered/image_rect_raw" />
       <remap from="depth_registered/points"     to="$(arg depth_registered)/points" />
     </node>
 
@@ -72,7 +76,7 @@
       <!-- Explicit topic remappings, shouldn't need all of these -->
       <remap from="rgb/image_rect_color"        to="$(arg rgb)/image_rect_color" />
       <remap from="rgb/camera_info"             to="$(arg rgb)/camera_info" />
-      <remap from="depth_registered/image_rect" to="$(arg depth_registered)/hw_registered/image_rect_raw" />
+      <remap from="depth_registered/image_rect" to="$(arg depth_registered_filtered)/hw_registered/image_rect_raw" />
       <remap from="depth_registered/points"     to="$(arg depth_registered)/points" />
     </node>
 
@@ -93,5 +97,5 @@
     </node>
 
   </group>
-  
+
 </launch>
