@@ -3,7 +3,6 @@
   <arg name="manager" />
   <arg name="depth" default="depth" />
   <arg name="projector" default="projector" />
-  <arg name="machine" default="localhost" />
 
   <arg name="respawn" default="false" />
   <arg     if="$(arg respawn)" name="bond" value="" />
@@ -12,8 +11,7 @@
   <!-- Disparity image -->
   <node pkg="nodelet" type="nodelet" name="disparity_$(arg depth)"
         args="load depth_image_proc/disparity $(arg manager) $(arg bond)"
-        respawn="$(arg respawn)"
-        machine="$(arg machine)">
+        respawn="$(arg respawn)">
     <!-- Use raw image for efficiency -->
     <remap from="left/image_rect" to="$(arg depth)/image_rect_raw" />
     <remap from="right" to="$(arg projector)" />
