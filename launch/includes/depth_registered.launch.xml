@@ -8,6 +8,8 @@
   <arg     if="$(arg respawn)" name="bond" value="" />
   <arg unless="$(arg respawn)" name="bond" value="--no-bond" />
 
+  <arg name="machine" default="localhost" />
+
   <arg name="sw_registered_processing" default="true" />
   <arg name="hw_registered_processing" default="true" />
 
@@ -28,7 +30,8 @@
   <group if="$(arg sw_registered_processing)">
     <node pkg="nodelet" type="nodelet" name="register_$(arg suffix)"
           args="load depth_image_proc/register $(arg manager) $(arg bond)"
-          respawn="$(arg respawn)">
+          respawn="$(arg respawn)"
+          machine="$(arg machine)">
       <!-- Explicit topic remappings, shouldn't need all of these -->
       <remap from="rgb/camera_info"             to="$(arg rgb)/camera_info" />
       <remap from="depth/camera_info"           to="$(arg depth)/camera_info" />
@@ -39,7 +42,8 @@
     <!-- Publish registered XYZRGB point cloud with software registered input -->
     <node pkg="nodelet" type="nodelet" name="points_xyzrgb_sw_registered"
           args="load depth_image_proc/point_cloud_xyzrgb $(arg manager) $(arg bond)"
-          respawn="$(arg respawn)">
+          respawn="$(arg respawn)"
+          machine="$(arg machine)">
       <!-- Explicit topic remappings, shouldn't need all of these -->
       <remap from="rgb/image_rect_color"        to="$(arg rgb)/image_rect_color" />
       <remap from="rgb/camera_info"             to="$(arg rgb)/camera_info" />
@@ -50,7 +54,8 @@
     <!-- Rectified depth image -->
     <node pkg="nodelet" type="nodelet" name="$(arg depth_registered)_sw_metric_rect"
       args="load depth_image_proc/convert_metric $(arg manager) $(arg bond)"
-      respawn="$(arg respawn)">
+      respawn="$(arg respawn)"
+      machine="$(arg machine)">
       <remap from="image_raw" to="$(arg depth_registered)/sw_registered/image_rect_raw" />
       <remap from="image"     to="$(arg depth_registered)/sw_registered/image_rect" />
     </node>
@@ -61,7 +66,8 @@
   <group if="$(arg hw_registered_processing)">
     <node pkg="nodelet" type="nodelet" name="$(arg depth_registered)_rectify_depth"
           args="load image_proc/rectify $(arg manager) $(arg bond)"
-          respawn="$(arg respawn)">
+          respawn="$(arg respawn)"
+          machine="$(arg machine)">
       <remap from="image_mono"  to="$(arg depth_registered)/image_raw" />
       <remap from="image_rect"  to="$(arg depth_registered)/hw_registered/image_rect_raw" />
       <!-- Use nearest neighbor (0) interpolation so we don't streak across
@@ -83,7 +89,8 @@
     <!-- Rectified depth image -->
     <node pkg="nodelet" type="nodelet" name="$(arg depth_registered)_hw_metric_rect"
       args="load depth_image_proc/convert_metric $(arg manager) $(arg bond)"
-      respawn="$(arg respawn)">
+      respawn="$(arg respawn)"
+      machine="$(arg machine)">
       <remap from="image_raw" to="$(arg depth_registered)/hw_registered/image_rect_raw" />
       <remap from="image"     to="$(arg depth_registered)/hw_registered/image_rect" />
     </node>
@@ -91,7 +98,8 @@
     <!-- Unrectified depth image -->
     <node pkg="nodelet" type="nodelet" name="$(arg depth_registered)_metric"
           args="load depth_image_proc/convert_metric $(arg manager) $(arg bond)"
-          respawn="$(arg respawn)">
+          respawn="$(arg respawn)"
+          machine="$(arg machine)">
       <remap from="image_raw" to="$(arg depth_registered)/image_raw" />
       <remap from="image"     to="$(arg depth_registered)/image" />
     </node>
