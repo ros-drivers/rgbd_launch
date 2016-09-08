@@ -6,13 +6,11 @@
   <arg     if="$(arg respawn)" name="bond" value="" />
   <arg unless="$(arg respawn)" name="bond" value="--no-bond" />
   <arg name="ir" />
-  <arg name="machine" default="localhost" />
   
   <!-- Rectified image -->
   <node pkg="nodelet" type="nodelet" name="rectify_ir"
         args="load image_proc/rectify $(arg manager) $(arg bond)"
-        respawn="$(arg respawn)"
-        machine="$(arg machine)">
+        respawn="$(arg respawn)">
     <remap from="image_mono" to="$(arg ir)/image_raw" />
     <remap from="image_rect" to="$(arg ir)/image_rect_ir" />
   </node>

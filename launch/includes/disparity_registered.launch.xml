@@ -3,7 +3,6 @@
   <arg name="manager" />
   <arg name="depth_registered" default="depth_registered" />
   <arg name="projector" default="projector" />
-  <arg name="machine" default="localhost" />
 
   <arg name="respawn" default="false" />
   <arg     if="$(arg respawn)" name="bond" value="" />
@@ -16,8 +15,7 @@
   <node if="$(arg sw_registered_processing)"
         pkg="nodelet" type="nodelet" name="disparity_registered_sw"
         args="load depth_image_proc/disparity $(arg manager) $(arg bond)"
-        respawn="$(arg respawn)"
-        machine="$(arg machine)">
+        respawn="$(arg respawn)">
     <!-- Use raw image for efficiency -->
     <remap from="left/image_rect" to="$(arg depth_registered)/sw_registered/image_rect_raw" />
     <remap from="right" to="$(arg projector)" />
@@ -31,8 +29,7 @@
   <node if="$(arg hw_registered_processing)"
         pkg="nodelet" type="nodelet" name="disparity_registered_hw"
         args="load depth_image_proc/disparity $(arg manager) $(arg bond)"
-        respawn="$(arg respawn)"
-        machine="$(arg machine)">
+        respawn="$(arg respawn)">
     <!-- Use raw image for efficiency -->
     <remap from="left/image_rect" to="$(arg depth_registered)/hw_registered/image_rect_raw" />
     <remap from="right" to="$(arg projector)" />
