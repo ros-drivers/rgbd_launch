@@ -8,7 +8,7 @@
   <arg name="ir" />
   
   <!-- Rectified image -->
-  <node pkg="nodelet" type="nodelet" name="rectify_ir"
+  <node pkg="nodelet" type="nodelet" name="$(arg ir)_rectify_ir"
         args="load image_proc/rectify $(arg manager) $(arg bond)"
         respawn="$(arg respawn)">
     <remap from="image_mono" to="$(arg ir)/image_raw" />
