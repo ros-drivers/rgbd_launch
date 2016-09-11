@@ -2,6 +2,12 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [feat] add prefix to nodelet name `#28 <https://github.com/ros-drivers/rgbd_launch/issues/28>`_
+* [maintenance] Enable rostest `#29 <https://github.com/ros-drivers/rgbd_launch/issues/29>`_, `#31 <https://github.com/ros-drivers/rgbd_launch/issues/31>`_
+* Contributors: Isaac I.Y. Saito, Kentaro Wada, Yuki Furuta
+
 2.1.2 (2016-05-07)
 ------------------
 * [feat] depth_registered_filtered injection `#25 <https://github.com/ros-drivers/rgbd_launch/issues/25>`_
