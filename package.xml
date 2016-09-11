@@ -27,5 +27,6 @@
   <run_depend>nodelet</run_depend>
   <run_depend>tf2_ros</run_depend>
 
-  <test_depend>rostest</test_depend>test_depend> 
+  <test_depend>rostest</test_depend>
+
 </package>
