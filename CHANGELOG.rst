@@ -2,8 +2,8 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.3 (2016-09-10)
+------------------
 * [feat] add prefix to nodelet name `#28 <https://github.com/ros-drivers/rgbd_launch/issues/28>`_
 * [maintenance] Enable rostest `#29 <https://github.com/ros-drivers/rgbd_launch/issues/29>`_, `#31 <https://github.com/ros-drivers/rgbd_launch/issues/31>`_
 * Contributors: Isaac I.Y. Saito, Kentaro Wada, Yuki Furuta
