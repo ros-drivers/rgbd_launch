@@ -22,6 +22,5 @@
   </include>
 
   <!-- for testing kinect_frames.launch -->
-  <include file="$(find rgbd_launch)/launch/kinect_frames.launch">
-  </include>
+  <include file="$(find rgbd_launch)/launch/kinect_frames.launch" />
 </launch>
