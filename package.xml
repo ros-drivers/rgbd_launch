@@ -8,6 +8,7 @@
     </description>
   <author>Patrick Mihelich and others</author>
   <maintainer email="piyushk@gmail.com">Piyush Khandelwal</maintainer>
+  <maintainer email="gm130s@gmail.com">Isaac I.Y. Saito</maintainer>
   <license>BSD</license>
 
   <url type="website">http://www.ros.org/wiki/rgbd_launch</url>
