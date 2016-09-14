@@ -2,8 +2,8 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.2.2 (2016-09-13)
+------------------
 * [capability] add rgb prefix, rectify_ir to node name
 * [maintenance] enable rostest upon build.
 * [maintenance] Remove Indigo. Enable Kinetic from Travis conf. `#32 <https://github.com/ros-drivers/rgbd_launch/issues/32>`_
