@@ -20,7 +20,7 @@
   <!-- Nodelet manager -->
   <node pkg="nodelet" type="nodelet" name="$(arg name)" args="manager"
         output="screen" launch-prefix="$(arg launch_prefix)"
-        respawn="$(arg respawn">
+        respawn="$(arg respawn)">
      <param name="num_worker_threads" value="$(arg num_worker_threads)" />
   </node>
 
