@@ -8,6 +8,7 @@
   <arg name="respawn" default="false" />
   <arg     if="$(arg respawn)" name="bond" value="" />
   <arg unless="$(arg respawn)" name="bond" value="--no-bond" />
+  <arg name="queue_size" default="5" />
   
   <!-- Processing modules -->
   <arg name="rgb_processing" default="true" />
@@ -35,6 +36,7 @@
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="rgb"     value="$(arg rgb)" />
     <arg name="debayer_processing" value="$(arg debayer_processing)" />
+    <arg name="queue_size" value="$(arg queue_size)" />
   </include>
 
   <!-- IR processing -->
@@ -43,6 +45,7 @@
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="ir"      value="$(arg ir)" />
+    <arg name="queue_size" value="$(arg queue_size)" />
   </include>
 
   <!-- Unregistered depth processing -->
@@ -51,6 +54,7 @@
     <arg name="manager" value="$(arg manager)" />
     <arg name="respawn" value="$(arg respawn)" />
     <arg name="depth"   value="$(arg depth)" />
+    <arg name="queue_size" value="$(arg queue_size)" />
   </include>
 
   <!-- Depth-to-RGB registration and processing -->
@@ -64,6 +68,7 @@
     <arg name="respawn"                   value="$(arg respawn)" />
     <arg name="sw_registered_processing"  value="$(arg sw_registered_processing)" />
     <arg name="hw_registered_processing"  value="$(arg hw_registered_processing)" />
+    <arg name="queue_size"                value="$(arg queue_size)" />
   </include>
 
   <!-- Unregistered disparity image -->
@@ -84,6 +89,7 @@
     <arg name="respawn"                   value="$(arg respawn)" />
     <arg name="sw_registered_processing"  value="$(arg sw_registered_processing)" />
     <arg name="hw_registered_processing"  value="$(arg hw_registered_processing)" />
+    <arg name="queue_size"                value="$(arg queue_size)" />
   </include>
 
 </launch>
