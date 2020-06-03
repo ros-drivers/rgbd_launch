@@ -2,8 +2,8 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.3.0 (2020-06-02)
+------------------
 * Noetic support `#49 <https://github.com/ros-drivers/rgbd_launch/issues/49>`_
 * Contributors: Mike Ferguson, Isaac I.Y. Saito
 
