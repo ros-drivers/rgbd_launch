@@ -2,6 +2,11 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Noetic support `#49 <https://github.com/ros-drivers/rgbd_launch/issues/49>`_
+* Contributors: Mike Ferguson, Isaac I.Y. Saito
+
 2.2.2 (2016-09-13)
 ------------------
 * [capability] add rgb prefix, rectify_ir to node name
