@@ -3,6 +3,7 @@
   <arg name="manager" />
   <arg name="depth_registered" default="depth_registered" />
   <arg name="projector" default="projector" />
+  <arg name="queue_size" default="5" />
 
   <arg name="respawn" default="false" />
   <arg     if="$(arg respawn)" name="bond" value="" />
@@ -23,6 +24,7 @@
 
     <param name="min_range" value="0.5" />
     <param name="max_range" value="4.0" />
+    <param name="queue_size" value="$(arg queue_size)" />
   </node>
 
   <!-- Disparity image from h/w registered source-->
@@ -37,6 +39,7 @@
 
     <param name="min_range" value="0.5" />
     <param name="max_range" value="4.0" />
+    <param name="queue_size" value="$(arg queue_size)" />
   </node>
 
 </launch>
