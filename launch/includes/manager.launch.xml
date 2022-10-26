@@ -10,7 +10,7 @@
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <!-- Worker threads -->
   <arg name="num_worker_threads" />
-  
+
   <arg name="respawn" default="false" />
 
   <!-- Also globally disable bond heartbeat timeout in debug mode, so everything
