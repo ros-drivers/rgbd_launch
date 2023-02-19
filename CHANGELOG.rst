@@ -2,6 +2,11 @@
 Changelog for package rgbd_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.4.0 (2023-02-19)
+------------------
+* Capability: Add queue_size option `#52 <https://github.com/ros-drivers/rgbd_launch/issues/52>`_
+* Maintenance: Synced with older master branch `#54 <https://github.com/ros-drivers/rgbd_launch/issues/54>`_, `#53 <https://github.com/ros-drivers/rgbd_launch/issues/53>`_
+
 2.3.0 (2020-06-02)
 ------------------
 * Noetic support `#49 <https://github.com/ros-drivers/rgbd_launch/issues/49>`_
